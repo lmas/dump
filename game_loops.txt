@@ -1,0 +1,19 @@
+
+while (running) {
+    accumulated_time += time_since_last_iteration;
+    // 1/60, basically how many physics frames you have per second
+    if (accumulated_time >= game_tick_time) {
+        handle_input(); do_game_updates ();
+        accumulated_time -= game_tick_time;
+    }
+    render ();
+}
+
+
+while running do
+    stoptick = gettime()
+    if (stoptick - starttick) > fps then
+        starttick = stoptick
+        handle_input(); do_game_updates ();
+    end
+end
