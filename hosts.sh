@@ -1,7 +1,7 @@
 #!/bin/sh
 # Create a new hosts file and fill it with blocked adservers.
 
-FILE='hosts'
+FILE='/etc/hosts'
 
 echo "# HOSTS file based on http://www.mvps.org/winhelp2002/hosts.txt" > $FILE
 echo "" >> $FILE
@@ -16,3 +16,4 @@ grep -v localhost | \
 grep 127.0.0.1 | \
 awk '{print "0.0.0.0 " $2}' >> $FILE
 
+echo "0.0.0.0 www.facebook.com" >> $FILE
