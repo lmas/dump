@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# For each directory in a user specified path, echo git status
+
+MAIN=$(readlink -f "$1")
+if [ "$1" == "" ]; then
+    # Default to current directory
+    MAIN=$(readlink -f ".")
+fi
+
+if [ ! -d "$MAIN" ]; then
+    echo "You must specify a valid directory!"
+    exit 1
+fi
+
+for DIR in $MAIN/*; do
+    if [ -d "$DIR" ]; then
+        cd "$DIR"
+        BRANCH=$(git branch -v 2>/dev/null | grep -E -o 'behind|ahead')
+        STATUS=$(git status --porcelain 2>/dev/null)
+        if [ "$?" -eq "0" ]; then
+            if [ "$STATUS" != "" ] || [ "$BRANCH" != "" ]; then
+                pwd
+                echo "-- $BRANCH"
+                echo -e "$STATUS\n"
+            fi
+        fi
+    fi
+done
