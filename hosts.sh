@@ -9,10 +9,9 @@ echo "" >> $FILE
 echo "#<ip-address>   <hostname.domain.org>   <hostname>" >> $FILE
 echo "127.0.0.1       localhost" >> $FILE
 echo "::1             localhost" >> $FILE
-echo "192.168.1.1     gateway $(hostname)" >> $FILE
 echo "" >> $FILE
 
-wget -q -O - http://www.mvps.org/winhelp2002/hosts.txt | \
+wget -q -O - http://winhelp2002.mvps.org/hosts.txt | \
 grep -v localhost | \
 grep 0.0.0.0 | \
 awk -v ip=$REDIRECT_IP '{print ip " " $2}' >> $FILE
