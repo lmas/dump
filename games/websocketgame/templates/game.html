@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/jquery.colorbox-min.js"></script>
+    <script>$(function(){
+
+        // Settings
+        var MAX_MSGS = 100;
+        var CLIENT_URL = "ws://localhost:8000/client";
+
+        var sock;
+        var msg = $("#msg");
+
+        $("#main").focus();
+        $("#main").on("keydown", handlekey);
+        $(document).bind("cbox_closed", function(){
+            $("#main").focus();
+        });
+
+        function handlekey(event) {
+            var key = event.keyCode || event.which;
+            switch(key){
+                case 13: // Enter
+                    $.colorbox({
+                        href: "#chatform",
+                        inline: true,
+                        opacity: 0.75,
+                        transition: "none",
+                        closeButton: false,
+                        onComplete: function(){
+                            $("#msg").focus();
+                        },
+                    });
+                    break;
+                default:
+                    console.debug("key: " + key);
+                    break;
+            }
+        }
+
+
+        function chatlog(msg) {
+            msg.appendTo($("#log"));
+            $("#log").scrollTop($("#log")[0].scrollHeight);
+
+            if ($("#log").children().length > MAX_MSGS){
+                $("#log div:first-child").remove();
+            }
+        }
+
+        function send(event, msg){
+            sock.send(event + " " + msg + "\r\n");
+        }
+
+        if (window["WebSocket"]) {
+            sock = new WebSocket(CLIENT_URL);
+
+            sock.onopen= function(event) {
+                chatlog($("<div style=\"color: green;\"/>").text("Connected."));
+            }
+
+            sock.onclose = function(event) {
+                chatlog($("<div style=\"color: red;\"/>").text("Disconnected."));
+            }
+
+            sock.onmessage = function(event) {
+                chatlog($("<div/>").text(event.data));
+            }
+        }
+
+        $("#chatform").submit(function() {
+            if (sock && msg.val()){
+                send("msg", msg.val())
+                msg.val("");
+                $.colorbox.close();
+            }
+            return false;
+        });
+    });</script>
+</head>
+
+<body>
+    <div id="main" tabindex="0">
+        <div id="map"></div>
+        <div id="log"></div>
+        <div style="display: none;">
+            <form id="chatform">
+                <input type="text" id="msg" tabindex="0" placeholder="Enter message">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+General
+-------
+
+??? drone
+---------
+job: captain
+ 
+
+Medic drone
+-----------
+job: life support
+heal crew
+
+Repair drone
+------------
+job: engineering
+repair ship
+
+Combat drone
+------------
+job: security
+kill intruders
+

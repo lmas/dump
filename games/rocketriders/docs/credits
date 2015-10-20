@@ -1,0 +1,22 @@
+
+DEVELOPER:
+-----------
+A Svensson (https://github.com/lmas)
+
+
+THIRD PARTY CONTENT AND LIBRARIES:
+---------------------------------
+ProFont
+Tobias Jung (http://www.tobias-jung.de/seekingprofont/)
+
+Löve Frames
+Kenny Shields (http://nikolairesokav.com/projects/loveframes/)
+
+HUMP.Vector
+Matthias Richter (http://vrld.github.io/hump/)
+
+AnAL
+Bart Bes (https://github.com/bartbes/love-misc-libs/tree/master/AnAL)
+
+Makefile
+potomak (https://love2d.org/forums/viewtopic.php?f=3&t=3620&start=30#p109507)

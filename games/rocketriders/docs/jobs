@@ -1,0 +1,63 @@
+
+General
+-------
+Each player should belong to only one job
+each job:
+- must be somewhat "fun" for the player
+- has a primary, active role that affects the rest of the ship
+- has at least two consoles for a main and a minor function
+- needs a reason to run around the ship
+- gives a passive buff to the other jobs (and itself)
+- has specific events that focus on that job
+- has a set of drones to perform a minor job specific function
+- needs custom tiles for its console, wall sign and misc decorations
+
+Captain
+-------
+role: move the ship (and give orders/info)
+console1: long range map and ship jump
+console2: short range event info and communicate with outsiders
+drones: no
+passive buff: targeting (better rolls vs. RNG)
+- star map is a grid of "events"
+- events fires when the ship enters the pos
+- long range scanners provides basic info of nearby events
+- short range scanners provides detailed info for current event
+
+Life support
+------------
+role: shelter the ship (and heal others)
+console1: air supply map and panic air regen, air regen time?
+console2: crew status
+drones: heal
+passive buff: defenses (suffer less during fails vs. RNG)?
+- floor tiles has an air var
+- if any neighbor near tile = vacuum, tile loses air
+- periodically regen air for ALL floor tiles
+- map shows which ship tiles has air
+- humans lose health to vacuum, fire, combat, other events
+
+Engineering
+----------
+role: power the ship (and repair it)
+console1: power distribution
+console2: ship dmg/air map
+drones: repair
+passive buff: speed (less cooldown time)
+- more power = more efficient operation
+- too little power left from generator = over heating
+- engine must charge up before ship can jump to new pos
+- overload engine for longer jumps/quicker recharges
+
+Security
+--------
+role: protect the ship (and kill intruders)
+console1: weapons/shields status and operation
+console2: ship intruders map
+drones: kill
+passive buff: 
+- ship to ship combat
+- ship weapons
+- ship shields
+- combat aboard the ship
+

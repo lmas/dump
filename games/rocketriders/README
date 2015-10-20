@@ -1,0 +1,16 @@
+The Ship
+-------------
+Multiplayer fun aboard a ship, traveling around the galaxy. Done with L�ve and Lua.
+
+Status
+------
+DISCONTINUED!
+Main engine done, but needs more bug hunting to make sure it's more stable. 
+
+Credits
+-------
+See the file docs/credits.txt for complete list.
+
+License
+-------
+MIT License, see the file LICENSE.

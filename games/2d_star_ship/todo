@@ -1,0 +1,17 @@
+
+settings:
+    set default values and then try to load user values
+
+protocol:
+    create new module containing network protocol
+    should only be definitions and constants?
+
+tilemap:
+    move the tileset to it's own file
+    start using the instances thingy
+
+map editor:
+    client side thing?
+
+tileset:
+    bitwise autotiling (http://www.saltgames.com/2010/a-bitwise-method-for-applying-tilemaps/)
