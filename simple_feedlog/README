@@ -1,0 +1,12 @@
+Simple Feedlog
+--------------
+Generate web pages filled with news from your favorite RSS/Atom feeds.
+It's the little brother of Feedloggr (https://github.com/lmas/Feedloggr).
+
+Credits
+-------
+See docs/Credits for complete list.
+
+License
+-------
+MIT License, see docs/LICENSE.

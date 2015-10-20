@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+
+import os
+import datetime
+import feedparser
+import hashlib
+
+import config
+CONFIG = config.CONFIG()
+with open(CONFIG.template, 'r') as f:
+    CONFIG.template = f.read()
+
+###############################################################################
+
+def html_escape(data):
+    # More thorough version than the one the builtin cgi module uses
+    data = data.replace('&', '&amp;')
+    data = data.replace('<', '&lt;')
+    data = data.replace('>', '&gt;')
+    data = data.replace('"', '&quot;')
+    data = data.replace('\'', '&#39;') # Why doesn't the cgi module escape this one..?
+    return data
+
+def debug(text):
+    if CONFIG.debug == True:
+        print(text)
+
+def sort_keys(dic):
+    return sorted(dic.keys())
+
+def sha_hash(text):
+    return hashlib.sha256(text).hexdigest()
+
+class news_generator():
+    def __init__(self, db_file, max_items, feeds):
+        self.db_file = db_file
+        self.max_items = max_items
+        self.feeds = feeds
+
+    def url_unique(self, url):
+        tmp = '%s\n' % sha_hash(url)
+        try:
+            for line in file(self.db_file):
+                if line == tmp:
+                    return False
+        except IOError:
+            pass
+        return True
+
+    def url_store(self, url):
+        with open(self.db_file, 'a') as f:
+            f.write('%s\n' % sha_hash(url))
+
+    def download(self):
+        # parse all rss feeds and insert the news items into the database,
+        # making sure the items are all unique inside the db
+        debug('Downloading feeds...')
+        data = ''
+        for cat in sort_keys(self.feeds):
+            debug('Category: %s' % cat)
+            data = '%s<h1>%s</h1><ol>\n' % (data, cat)
+            for feedlink in self.feeds[cat]:
+                feeddata = feedparser.parse(feedlink)
+                items = min(self.max_items, len(feeddata.entries))
+                for i in range(items):
+                    item = feeddata.entries[i]
+                    link = html_escape(item['link'].encode('utf-8'))
+                    title = html_escape(item['title'].encode('utf-8')) or link
+                    if not self.url_unique(link):
+                        continue
+                    debug('new: %s' % link)
+                    self.url_store(link)
+                    data = '%s<li><a href="%s">%s</a></li>\n' % (data, link, title)
+            data = '%s</ol>\n' % data
+        return data
+
+###############################################################################
+
+def main():
+    # grab news from the feeds
+    gen = news_generator(CONFIG.database_file, CONFIG.max_items, CONFIG.feeds)
+    todays_news = gen.download()
+
+    # prepare the html page
+    template = CONFIG.template
+    today = datetime.date.today()
+    delta = datetime.timedelta(days=1)
+    filename = os.path.join(CONFIG.output_dir, '%s.html' % str(today))
+    parts = {
+        'date': str(today),
+        'next': '%s.html' % str(today + delta),
+        'prev': '%s.html' % str(today - delta),
+        'filename': CONFIG.latest_file,
+        'feeds': todays_news,
+    }
+
+    # store the page
+    with open(filename, 'w') as f:
+        data = template % parts
+        f.write(data)
+
+    # try remove old symlink and make a new one pointing to today's page
+    tmp = os.path.join(CONFIG.output_dir, CONFIG.latest_file)
+    try:
+        os.remove(tmp)
+    except OSError:
+        pass
+    os.symlink(filename, tmp)
+
+if __name__ == '__main__':
+    main()
+

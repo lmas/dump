@@ -1,0 +1,48 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>%(date)s | Feedlog</title>
+<style type="text/css">
+    body {
+        background-color: #000;
+        color: #BBB;
+    }
+    .header {
+        text-align: center;
+    }
+    .footer {
+        text-align: center;
+        font-size: 75%%;
+    }
+    li {
+        font-family: monospace;
+        margin-bottom: 5px;
+    }
+    a {
+        text-decoration: none;
+        color: #BBB;
+    }
+    a:hover {
+        color: #FFF;
+    }
+    a:visited {
+        color: #555;
+    }
+    h1 {
+        background-color: #BBB;
+        color: #000;
+        text-align: center;
+        font-size: 100%%;
+    }
+</style>
+</head><body>
+<div class="header">
+    <a href="%(next)s">&lt;&lt;&lt;</a>
+    <a href="%(filename)s">%(date)s</a>
+    <a href="%(prev)s">&gt;&gt;&gt;</a>
+</div>
+%(feeds)s
+<div class="footer">Generated with <a href="https://github.com/lmas/feedlog">Feedlog</a>.</div>
+</body></html>
