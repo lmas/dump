@@ -1,7 +1,7 @@
 #!/bin/sh
 # Create a new hosts file and fill it with blocked adservers.
 
-FILE="/etc/hosts"
+FILE="hosts"
 REDIRECT_IP="127.0.0.1"
 
 echo "# HOSTS file based on http://www.mvps.org/winhelp2002/hosts.txt" > $FILE
