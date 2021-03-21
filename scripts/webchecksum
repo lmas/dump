@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Web Content Checksum
+# Take one URL as input, try get the content located at URL and finally return
+# the sha1sum of the downloaded content
+#
+# A simple one-liner:
+# wget -q -O - URL | sha1sum | cut -d ' ' -f 1
+
+content=$(wget -q -O - $1)
+if [[ $? == "0" ]]; then
+	echo $(echo -n $content | sha1sum | cut -d ' ' -f 1)
+	exit 0
+else
+	echo "ERROR: Could not grab the content at '$1'"
+	exit 1
+fi

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{topic}}
+{% endblock %}
+
+{% block style %}
+.post {
+	border: 2px solid #000;
+}
+.poster {
+	border-right: 2px solid #000;
+}
+{% endblock %}
+
+{% block content %}
+<h1>{{topic}}</h1>
+<h2>Created: {{topic.created}}</h2>
+<h2>By: {{topic.author}}</h2>
+{% for post in object_list %}
+	<div class="post">
+		<span class="poster">{{post.author}}</span>
+		<span class="poster">Created: {{post.created}}</span>
+		<span class="poster">Modified: {{post.modified}}</span>
+		<span class="message">{{post.message}}</span>
+	</div>
+{% endfor %}
+{% endblock %}

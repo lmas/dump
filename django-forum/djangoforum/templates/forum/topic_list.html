@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{board}}
+{% endblock %}
+
+{% block style %}
+.topic {
+        border: 2px solid #000;
+}
+.message {
+        border-right: 2px solid #000;
+}
+{% endblock %}
+
+{% block content %}
+<h1>{{board}}</h1>
+
+<h2>Actions:</h2>
+<a href="{% url 'forum_topic_create' board=board.pk %}">New topic</a>
+
+<h2>Topics:</h2>
+{% for topic in object_list %}
+        <div class="topic">
+                <span class="message"><a href="{% url 'forum_post_list' topic=topic.pk %}">{{topic.title}}</a></span>
+                <span class="author">{{topic.author}}</span>
+        </div>
+{% endfor %}
+{% endblock %}

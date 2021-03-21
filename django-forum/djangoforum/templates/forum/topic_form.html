@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+New topic - {{board}}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+    <h1>New topic - {{board}}</h1>
+    <form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+    </form>
+{% endblock %}
