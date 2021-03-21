@@ -1,0 +1,48 @@
+
+- Change direction with shift+dir
+
+- add to player a list of known blueprints
+- press C for the craft menu
+- when blueprint is selected:
+    - check area infront of player DIR
+    - if free from stuff, "prepare tiles" for the new building
+
+- blueprint struct:
+    - list of required blocks (in relative positions?)
+    - list of placed blocks
+    - type of building to make when finished
+
+    - when a block is placed nearby, check it against this blueprint
+    - if good, remove block from requirements and add to placed blocks list
+    - when no more requirements, permanently create a building
+    - and prevent moving away the building blocks
+
+- building struct:
+    - list of blocks that are part of this building
+    - list of stored items
+    - max amount of items in storage
+    - func to run when USEd
+
+    - when USEd, check all blocks in list and make sure they're good
+    - if building is damaged or missing, do not continue
+    - else, run the use func
+    - USE available for all blocks of a building
+
+    - can drop and take items into/from a building's storage
+
+- craft a workbench building from scratch
+- drop rocks into workbench as crafting material
+
+- craft storage building from rocks in workbench
+- create a storage building from parts
+- store items in building
+
+- craft furnace parts out of the stored rocks in workbench
+- create a furnace building from parts
+- drop ore into furnace
+- craft iron bar
+
+- drop iron bar into workbench
+- craft drill building from iron in workbench
+- create drill from parts
+- drill should autom. produce rocks/ore
