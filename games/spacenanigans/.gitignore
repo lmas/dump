@@ -1,0 +1,5 @@
+static/game.js
+cmd/server/server64
+cmd/server/server32
+tmp/
+server.db

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Spacenanigans</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/static/style.css" type="text/css">
+	<script src="/static/game.js"></script>
+</head>
+
+<body>
+	<main>
+		<canvas id="game"></canvas>
+
+		<div id="chat">
+			<ul></ul>
+			<input type="text" maxlength="200">
+		</div>
+
+		<div id="connection-error" class="hidden">
+			<p>Disconnected</p>
+		</div>
+
+		<div id="error" class="hidden">
+			<span>
+            <h1>Error</h1>
+            <button class="close" onclick="hideWindow('error')">X</button>
+        </span>
+			<p></p>
+		</div>
+
+		<div id="msg" class="hidden">
+			<span>
+            <h1>Window title</h1>
+            <button class="close" onclick="hideWindow('msg')">X</button>
+        </span>
+			<p>Here's the message fam test liiiines
+			</p>
+		</div>
+	</main>
+</body>
+
+</html>

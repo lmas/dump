@@ -1,0 +1,213 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.5;
+	background-color: #29313D;
+	color: #CED1C0;
+	margin: auto;
+}
+
+.hidden {
+	display: none;
+}
+
+a {
+	color: #CED1C0;
+}
+
+/*
+input {
+	padding: 0px 10px;
+	border: 1px solid #1A1F26;
+	border-radius: 4px;
+}
+*/
+
+/*******************************************************************************
+ * PAGES
+ ******************************************************************************/
+
+header {
+	margin: auto;
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	padding: 10px;
+}
+
+header * {
+	flex-grow: 1;
+	text-align: center;
+	text-decoration: none;
+}
+
+header span {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+header a:hover {
+	background-color: #0f5b75;
+}
+
+section {
+	margin: auto;
+	margin-top: 50px;
+	width: 50%;
+	text-align: center;
+	flex-grow: 1;
+}
+
+section * {
+	margin: auto;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+section form {
+	display: flex;
+	flex-direction: column;
+	width: 500px;
+}
+
+section button {
+	width: 100px;
+}
+
+section #error {
+	background: #e74c3c;
+	color: #fff;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+section td {
+	width: 0;
+}
+
+/*******************************************************************************
+ * GAME
+ ******************************************************************************/
+
+main {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+}
+
+#game {
+	/*background-color: #000;*/
+	background-color: red;
+	width: 75%;
+	height: 100%;
+}
+
+#chat {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0;
+	border-left: 5px #0f5b75 solid;
+	overflow: auto;
+}
+
+#chat ul {
+	flex: 1 1 0;
+	list-style: none;
+	background-color: #1b2426;
+	padding: 10px;
+	overflow: auto;
+	overflow-wrap: break-word;
+}
+
+#chat li {
+	display: flex;
+}
+
+#chat .msgtime {
+	padding-right: 20px;
+}
+
+#chat .msguser {
+	padding-right: 20px;
+}
+
+#chat .msgtext {
+	overflow: hidden;
+}
+
+/*******************************************************************************
+ * GAME WINDOWS
+ ******************************************************************************/
+
+.window {
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	background-color: #0f5b75;
+	border-radius: 5px;
+	color: #fff;
+	position: absolute;
+	top: 100px;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.window span {
+	display: flex;
+	margin-bottom: 5px;
+	align-items: center;
+}
+
+.window h1 {
+	flex-grow: 1;
+	font-size: 12px;
+	text-shadow: 2px 2px 0 #444;
+}
+
+.window p {
+	padding: 10px;
+	background-color: #1b2426;
+	white-space: pre-wrap;
+	overflow: auto;
+	height: 100%;
+}
+
+.window .close {
+	background-color: #1b2426;
+	color: #fff;
+	border: 0;
+	width: 30px;
+	height: 20px;
+}
+
+.window#connection-error {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	margin: auto;
+	text-align: center;
+}
+
+.window#error {
+	width: 300px;
+}
+
+.window#msg {
+	width: 300px;
+	height: 100px;
+}
