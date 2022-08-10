@@ -1,0 +1,99 @@
+package lexer
+
+import (
+	"strings"
+	"testing"
+)
+
+const input = `// a test comment
+
+// test instructions with weird white space around it
+noop	    
+	    noop
+
+	// constants
+	#define CONST -11111
+	#define CO 11111
+	movi a CONST
+	movi b co
+
+	// labels
+	mov:
+	a: b: C:
+
+	// hardware interrupts
+	hwq 0 // RNG
+	hwq 1 // Printer
+	hwi 0
+	hwi 1
+
+	// math
+	movi a 1
+	mov b a
+	addi a 1
+	add b a
+	subi a 1
+	sub b a
+	muli a 2
+	mul b a
+	divi a 2
+	div b a
+	modi a 2
+	mod b a
+
+	// test instructions
+	movi a 1
+	teq a 0
+	tne a 0
+	tgt a 0
+	tge a 0
+	tlt a 0
+	tle a 0
+
+	// test registers
+	movi a 1
+	movi b 1
+	movi c 1
+	movi t 1
+	movi x 1
+	movi y 1
+
+	// jumps
+	jump true
+	noop
+true:
+	movi t 1
+	jpt false
+	noop
+false:
+	movi t 0
+	jpf call
+	noop
+call:
+	call func
+	noop
+	//jump end
+	jump end
+	//noop
+
+func:
+	noop
+	ret
+	noop
+
+end:
+	//divi t 0
+	//jump 200
+	halt // all done, end program
+	`
+
+func BenchmarkLexer(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b := strings.NewReader(input)
+		l := New(b)
+		_, err := l.Parse()
+		if err != nil {
+			panic(err)
+		}
+	}
+}
